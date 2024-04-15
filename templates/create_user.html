@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>Sukurti vartotoją</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+        }
+        form, .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+        }
+        input, select, button, textarea {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: inline-block;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            margin-top: 10px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>    
+</head>
+<body>
+    <div class="container">
+        <h1>Sukurti vartotoją</h1>
+        <form action="/create_user" method="post">
+            Vartotojo vardas: <input type="text" name="username" required><br>
+            El. paštas: <input type="email" name="email" required><br>
+            <button type="submit">Sukurti</button>
+        </form>
+        <a href="/users">Atgal</a>
+    </div>
+</body>
+</html>

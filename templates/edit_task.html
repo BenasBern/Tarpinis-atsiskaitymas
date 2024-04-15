@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>Redaguoti užduotį</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+        }
+        form, .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+        }
+        input, select, button, textarea {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: inline-block;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            margin-top: 10px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>    
+</head>
+<body>
+    <div class="container">
+        <h1>Redaguoti užduotį</h1>
+        <form action="{{ url_for('edit_task', task_id=task.id) }}" method="post">
+            Pavadinimas: <input type="text" name="name" value="{{ task.name }}" required><br>
+            Aprašymas: <textarea name="description" required>{{ task.description }}</textarea><br>
+            Būsena: <select name="status" required>
+                <option value="Nebaigta" {% if task.status == 'Nebaigta' %}selected{% endif %}>Nebaigta</option>
+                <option value="Baigta" {% if task.status == 'Baigta' %}selected{% endif %}>Baigta</option>
+                <option value="Perduota" {% if task.status == 'Perduota' %}selected{% endif %}>Perduota</option>
+            </select><br>
+            Atsakingas: <select name="user_id" required>
+            {% for user in users %}
+                <option value="{{ user.id }}" {% if task.user_id == user.id %}selected{% endif %}>{{ user.username }}</option>
+            {% endfor %}
+            </select><br>
+            <button type="submit">Atnaujinti</button>
+        </form>
+        <a href="/">Atgal į sąrašą</a>
+    </div>
+</body>
+</html>

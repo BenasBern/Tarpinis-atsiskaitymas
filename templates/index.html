@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>Užduočių sąrašas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Changed from center to flex-start for better spacing */
+            height: auto; /* Changed from 100vh to auto */
+            min-height: 100vh; /* Ensures the body takes at least the full viewport height */
+        }
+        h1 {
+            color: #333;
+            text-align: center; /* Center the title text */
+            margin-bottom: 20px; /* Add more space under the title */
+        }
+        form, .container {
+            background-color: white;
+            padding: 30px; /* Increased padding */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 90%; /* Make the container responsive */
+            max-width: 600px; /* Set a max-width for larger screens */
+            margin-bottom: 40px; /* Add space at the bottom of the container */
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+        li {
+            background-color: #f9f9f9; /* Give a background color to each list item */
+            margin-bottom: 10px; /* Space out list items */
+            padding: 15px; /* Add padding within list items */
+            border-radius: 5px; /* Round the corners of list items */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+        }
+        input, select, button, textarea, a {
+            margin: 10px 0;
+            padding: 12px; /* Slightly increase padding */
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: calc(100% - 24px); /* Subtract padding from the width */
+            box-sizing: border-box; /* Ensures padding doesn't add to the width */
+        }
+        button, a {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from links */
+            display: block; /* Make links and buttons take the full width */
+            text-align: center; /* Center text in links and buttons */
+        }
+        button:hover, a:hover {
+            background-color: #0056b3;
+        }
+        .task-details {
+            margin-bottom: 5px; /* Add a bottom margin to task details */
+        }
+    </style>    
+</head>
+<body>
+    <div class="container">
+        <h1>Užduočių sąrašas</h1>
+        <ul>
+        {% for task in tasks %}
+            <li>
+                <div class="task-details">{{ task.name }} - {{ task.description }} - Būsena: {{ task.status }} - Atsakingas: {{ task.username }}</div>
+                <a href="{{ url_for('edit_task', task_id=task.id) }}">Redaguoti</a>
+                <a href="{{ url_for('delete_task', task_id=task.id) }}">Trinti</a>
+            </li>
+        {% endfor %}
+        </ul>
+        <a href="/add">Pridėti naują užduotį</a>
+        <a href="/users">Vartotojų sąrašas</a>
+    </div>
+</body>
+</html>
